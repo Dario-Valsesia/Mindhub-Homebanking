@@ -1,0 +1,1109 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif !important;
+    user-select: none;
+}
+.row{
+    margin: 0 !important;
+}
+
+
+
+/********OFFCANVAS NAV**********/
+#offcanvasExample{
+    width: 13rem;
+    transition: .1s !important;
+    background-color: #21081e;
+    color: #E8F0F2;
+    border: none;
+    padding-top: 15vh;
+    
+}
+.btn-nav{
+    width: 4rem !important;
+    height: 3rem;
+    background-color: inherit !important;
+    margin: 0 !important;
+    position: absolute;
+    top: calc((15vh - 3rem)/2);
+    left: 1rem;
+    border: 1px solid #6E85B2;
+}
+.btn-nav-close:hover i{
+    transform: rotate(180deg);
+}
+
+.btn-nav i{
+    height: auto;
+    color: #fff;
+    font-size: 35px;
+    transition: 1s;
+}
+.bi-x-lg{
+    font-size: 20px !important;
+}
+
+.nav>a{
+    color: #fff ;
+    text-decoration: none;
+    margin: 1rem 0;
+    font-size: 20px;
+}
+.nav .active{
+    text-decoration: underline;
+}
+.nav>a>i{
+    font-size: 25px;
+}
+
+
+/*DARK MODE BTN*/
+.bi-moon-stars::before, .bi-sun::before{
+    font-size: 25px;
+    margin-right: .5rem;
+    cursor: pointer;
+}
+.bi-moon-stars, .bi-sun{
+    font-size: 22px;
+}
+.form-check-label{
+    cursor: pointer;
+    padding: .5rem;
+    background-color: rgba(0,0,0,0.3);
+    width: auto;
+    border-radius: 1rem;
+    margin: 0 auto;
+}
+.form-check{
+    width: 100%;
+}
+#flexSwitchCheckChecked:checked{
+    background-color: #6E85B2 !important;
+}
+
+/*******HEADER***************/
+
+header{
+    min-height: 15vh;
+    background-color: #3E2C41;
+    color: #E8F0F2;
+    position: sticky;
+    top: 0;
+    z-index: 4 !important;
+}
+.rounded-circle{
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+}
+ul.dropdown-menu{
+    background: linear-gradient(to bottom,#3E2C41,#5C527F) !important;
+}
+ul.dropdown-menu a{
+    color: #fff;
+}
+h1>img{
+    width: 5rem;
+    height: 5rem;
+}
+
+
+/********MAIN*************/
+main{
+    padding: 0 !important;
+    min-height: 70vh !important;
+    padding-bottom: 1rem !important;
+    overflow-x: hidden !important;
+}
+.bgMain{  
+    /* background: radial-gradient(circle, rgba(112,8,180,0.7791491596638656) 70%, rgba(0,0,0,1) 100%) !important; */
+    background-image: url(../img/backgroundMain.jpg);
+    background-size: cover;
+    background-position-y: center;
+    padding:0 !important;
+}
+
+
+/*********************/
+
+/*********************/
+.bi-piggy-bank::before, .bi-calendar-date::before{
+    font-size: 25px;
+    margin-right: 0.5rem;
+    color: #3E2C41;
+}
+h2.welcome{
+    font-size: 35px;
+    letter-spacing: .1rem;
+    margin: 0 !important;
+    padding-top: .5rem;
+}
+.nameClient{
+    font-size: 30px;
+    color: #fff;
+    font-weight: 700;
+}
+.totalBalance{
+    font-size: 25px;
+    margin: auto !important;  
+}
+.totalBalance span{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+}
+.containerBalance{
+    width: auto;
+    height: 4rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: #6E85B2;
+    padding: .5rem 2rem !important;
+    margin: .5rem 0;
+    transform: scale(0);
+    animation-name: balance;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    box-shadow: 0px 0px 13px 8px rgba(0,0,0,0.75) inset;
+}
+.btnCreateAccount{
+    background-color: #261C2C;
+    height: 4rem;
+    color: #fff;
+    border-radius: 1rem;
+    padding: 0 .5rem;
+    transition: background-color .5s;
+    margin: .5rem 0;
+    border: none;
+}
+.btnCreateAccount:hover{
+    background-color: #3E2C41;
+}
+/*****ACORDION ACCOUNTS******/
+#accordionFlushExample{
+    width: 90%;
+    margin: auto;
+}
+#accordionFlushExample h2,.accordion-body{
+    background-color: inherit !important;
+}
+.accordion-item:first-child{
+    background-color: inherit !important;
+}
+.accordion-button{
+    background-color: #3d46a3 !important;
+    color: #fff !important;
+    width: 30%;
+    box-shadow: 0px 0px 13px 8px rgba(0,0,0,0.75) inset;
+}
+
+#flush-collapseOne{
+    transition:  .5s !important;
+}
+.accordion-button::after {
+    filter: invert(1);
+}
+.list-group-horizontal .list-group-item{
+    width: 33%;
+    vertical-align: middle !important;
+    border: 1px solid #5C527F;
+    margin-top: .3rem;
+    background-color: #D9E4FC;
+}
+.list-group-item code{
+    font-size: 18px !important;
+}
+.card-body,.containerCards li{
+    background-color: #D9E4FC !important;
+}
+
+/************MAIN ACCOUNT************/
+
+.typeCredit{
+   color: #00ff00;
+}
+.typeDebit{
+   color: #ff0000;
+}
+.headTable{
+    background-color: rgba(0,0,0,0.5);
+}
+
+/******TABLE ACCOUNT******/
+
+.rowTable{
+    border:1px solid #6E85B2 !important;
+    background-color: #D9E4FC;
+}
+/*CARD ACCOUNT*/
+.containerCards{
+    flex-wrap: wrap;
+    margin-top: 2rem !important;
+    width: 100%;   
+}
+main .cardAccount{
+    width: 23rem;
+    margin: 1rem;
+    border: 1px solid #5C527F !important;
+    background-color: #D9E4FC;
+    
+}
+.containerCards>.card{
+    border: 1px solid #5C527F !important;
+    width: 23rem;
+    margin: 1rem 0;
+
+}
+.btn-transactions{
+    font-size: 20px;
+    color: #fff;
+    font-weight: 500;
+    padding: 1rem 3rem;
+}
+.btn-transactions:hover{
+    color: #6E85B2;
+}
+.containerTransaction{
+    background: linear-gradient(to right,#5C527F,#3E2C41);
+}
+.textDate{
+    font-size: 20px;
+}
+.numberAccount{
+    color: #3E2C41;
+    user-select: text !important;
+}
+.prueba{
+    background: linear-gradient(to right,#6E85B2,#afa9e8) !important;
+}
+.card.border{
+    border: 1px solid #6E85B2 !important;
+}
+
+/***********ANIMACION TOTAL BALANCE*********/
+@keyframes balance {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+/*****FOOTER*****/
+footer.row{
+    min-height: 15vh !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    color: #fff;
+    background-color: #3E2C41;
+    padding-top: .5rem;
+}
+.divFooter{
+    min-height: 100%  !important;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between    !important;
+    align-items: center !important;
+    padding: 0!important;
+}
+
+.divFooter>div>a{
+    margin: 0 1rem !important;
+}
+.divFooter>div>a>i {
+    color: #fff;
+    font-size: 25px;
+    transition: 1s;
+}
+.divFooter>div>a>i:hover {
+    color: #6E85B2;
+    transform: rotate(360deg);
+}
+.divFooter p{
+    margin: 0 !important;
+}
+/****CONTAINER CARD****/
+.containerDebitCredit{
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 60vh;
+}
+.containerDebit,.containerCredit{
+    width: 50% !important;
+}
+.anyCard{
+    height: 100%;
+}
+.containerDebit>h3,.containerCredit>h3{
+        width: 30rem;
+        height: 4rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #5C527F;
+        padding: .5rem 2rem !important;
+        box-shadow: 0px 0px 13px 8px rgba(0,0,0,0.75) inset;
+        color: #fff;
+}
+.btnCreateCard{
+    width: 10rem;
+    height: 2.5rem;
+    padding: .5rem;
+    border: none;
+    background-color: #5C527F;
+    color: #fff;
+    vertical-align: middle;
+    border-top-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    text-decoration: none;
+    transition: .5s;
+}
+.btnCreateCard:hover{
+    background-color: #3E2C41;
+    color: #fff;
+    transform: scale(1.3);
+}
+
+/*******CARD***********/
+.cardCredit,.cardDebit{
+    height: 11rem;
+    width: 18rem;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 2s;
+    background-color: inherit;
+    cursor: pointer;
+    border: hidden;
+}
+.cardCredit p, .cardCredit h5, .cardDebit p,.cardDebit h5{
+    margin: 0;
+}
+
+.face{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.84);
+    
+}
+.back{
+    transform: rotateY(180deg);
+}
+.front{
+    padding: 1rem 1.5rem !important;
+}
+.backGold{
+    background-color: #020E27;
+    /* background: linear-gradient(to right, #020E27,#122752); */
+}
+.backTitanium{
+    background-color: #565f6b !important;
+    filter: brightness(1.2);
+}
+.backSilver{
+    background-color: #a0a0a0 !important;
+    filter: brightness(.9);
+}
+.backTitanium,.backSilver,.backGold{
+    transition: background-color 0.5s ease;
+}
+.toTurnJS{
+    transform: rotateY(180deg);
+}
+.imgVisa{
+    width: 2rem;
+    border-radius: .5rem;
+    border: 1px solid #333;
+}
+.titleCard{
+    font-size: 16px;
+    padding-right: .4rem;
+}
+.numberCard,.validCard>span,.cardHolder{
+    color: #B8860B;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    font-weight: 900;
+    text-shadow: 2px 2px 0px rgba(0,0,0,1);
+    font-size: 14px;
+}
+.numberCard{
+    letter-spacing: .15rem;
+    font-size: 18px;
+}
+.textTitanium{
+    color: #bbbb !important;
+}
+.textSilver{
+    color: #000d !important;
+    text-shadow: 2px 2px 0px rgba(230,230,230,1) !important;
+    
+}
+
+.validCard{
+    font-size: 10px;
+}
+.conditionsCard{
+    font-size: 8px;
+    margin-left: 1rem !important;
+}
+.visaLogo{
+    width: 3rem;
+    position: absolute;
+    bottom: .8rem;
+    right: 1rem;
+    filter: invert(1);
+}
+.barCode{
+    width: 100%;
+    height: 2.5rem;
+    background-color: #000;
+    margin-top: 1rem;
+}
+.containerCvv{
+    width: 50%;
+    height: 1.5rem;
+    background-color: #eee;
+    margin:.5rem 1rem;
+    padding-right: .5rem;
+    justify-content: flex-end;
+}
+/****ANIMATION CARD DEBIT***/
+.divDebit{
+    animation-name: debit;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+.divCredit{
+    animation-name: credit;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes debit {
+    0%{
+        transform: translateX(-150%);
+        display: inline-flexbox !important;
+    }
+
+    100%{
+        transform: translateX(0);      
+    }
+}
+@keyframes credit {
+    0%{
+        transform: translateX(150%)
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+/********CREATE CARD******/
+.mainCreateCard{
+    padding: 0 !important;
+}
+.containerCreateCard{
+    width: 40rem;
+    height: 30rem;
+    background-image: url(../img/backgroundCreateCard.jpg);
+    background-size: cover;
+    border-radius: 1rem;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 2s;
+    
+    
+}
+
+.containerColorCard,.containerTypeCard{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    padding-right: 4rem;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+.containerColorCard{
+    transform: rotateX(180deg);
+}
+.containerDataType{
+    height: 100%;
+}
+.containerCreateCard .btn{
+    /* background-color: #ffef1d !important; */
+    background: linear-gradient(90deg, rgba(255,239,29,1) 0%, rgba(253,235,28,1) 2%, rgba(163,35,1,1) 100%);
+    color: #000;
+    width: 6rem;
+}
+.containerCreateCard i::before{
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;  
+     
+}
+.containerCreateCard i{
+    transition: .5s; 
+}
+
+.iback{
+    position: absolute;
+    top: 1rem;
+    left: -.5rem;
+    transition: .5s;
+}
+.iback:hover,.containerCreateCard i:hover{
+    transform: scale(1.3);
+}
+.rotateCreateCard{
+    transform: rotateX(180deg);
+} 
+
+
+/****CREATE TRANSACTION*********/
+.mainTransaction{
+    background: radial-gradient(circle, rgba(112,8,180,0.7791491596638656) 70%, rgba(0,0,0,1) 100%);  
+}
+.containerTransactionCreate{
+    width: 40rem;
+    height: 30rem;
+    background-image: url(../img/backgroundTransaction.jpg);
+    background-size: cover;
+    background-position-x: center;
+    position: relative;
+    overflow: hidden; 
+}
+.containerTransactionCreate>.d-flex{
+    width: 100% !important;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left:0;
+    background-color: rgba(76,40,130,.5); 
+}
+.backIcon{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.containerTransactionCreate div>h5{
+    color: #fff;
+}
+.containerTransactionCreate div>i::before{
+    font-size: 35px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+.containerTransactionCreate div>.btn,.containerConfirm>.btn{
+    width: 10rem !important;
+    background-color: #6E85B2 !important;
+    color: #222;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    transition: background-color .5s;
+}
+.containerTransactionCreate div>.btn:hover{
+    background-color: #5a7488 !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+.containerTransactionOption{
+    animation: hello 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+.containerTransactionOption input{
+    padding: .5rem;
+    border: 1px solid #fff;  
+    background-color: rgba(76,40,130,.8);   
+    color: #fff;
+}
+.containerTransactionOption input::placeholder{
+    color: #fff;
+}
+.containerBtnBalance{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.containerBtnBalance p,.containerAccountLoan p{
+    width: 6rem;
+    color: #fff;
+    margin: 0;
+    margin-left: 1rem;
+    padding: .2rem;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 1rem;
+    text-align: center;
+}
+.containerConfirm{
+    width: 20rem;
+    height: 30rem;
+    background-image: url(../img/backgroundTransaction.jpg) !important;
+    background-size: cover;
+    background-position-x: center;
+    animation: confirm 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+.containerConfirm .list-group-flush{
+    width: 100%;
+    background-color: #fff6;
+    padding: .5rem;
+}
+.containerConfirm .list-group-flush li{
+    width: 100%;
+    background-color: rgba(76,40,130,.7); 
+    color: #fff;
+    border-radius: 1rem;
+    margin: .5rem 0;
+    user-select: text !important;
+}
+.containerConfirm p {
+    margin: 0 !important;
+}
+.messageEr{
+    background-color: rgba(255,0,0,0.5) !important;
+    border-radius: 1rem;
+}
+.messageEr::before{
+    font-size: 22px;
+    margin-right: .5rem;
+    vertical-align: middle;
+}
+@keyframes confirm {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes hello {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.exit{
+    animation: exit 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes exit {
+    0%{
+        transform: translateX(0);
+        opacity: .5;
+    }
+    100%{
+        transform: translateX(-200%);
+    }
+}
+.exitBack{
+    animation: exitBack 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes exitBack {
+    0%{
+        transform: translateX(0);
+        opacity: .5;
+    }
+    100%{
+        transform: translateX(200%);
+    }
+}
+.containerBlackModal{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    top: 0;
+}
+.containerModalTransaction{
+    width: 30rem;
+    border-radius: 1rem;
+    border: 1px solid #000;
+    background-color: #afa9e8;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%,-50%) !important; 
+    animation: createPDF 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;  
+}
+.modal-header{
+    background-color: #6E85B2 !important;
+    border-top-left-radius: 1rem !important;
+    border-top-right-radius: 1rem !important;
+}
+.btnPdf{
+    background-color: #5C527F;
+    transition: background-color .5s;
+}
+.btnPdf:hover{
+    background-color: #3E2C41;
+}
+.btnPdf>i::before{
+    font-size: 20px;
+    vertical-align: middle;
+}
+@keyframes createPDF {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+    
+}
+
+/******CREATE LOAN*********/
+.btnCreateLoan{
+    transition: .5s;
+    background-color: #3d46a3;
+}
+.btnCreateLoan:hover{
+    transform: scale(1.3);
+    background-color: #3d46a3 !important;
+    box-shadow: 7px 7px 5px 0px rgba(0,0,0,0.75);
+
+}
+.mainLoan{
+    padding: 0 !important;
+}
+.containerCreateLoan{
+    width: 40rem;
+    height: 30rem;
+    background-image: url(../img/backgroundLoan.jpg);
+    background-size: cover;
+    border-radius: 1rem;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    position: relative;
+    overflow: hidden; 
+}
+.containerOptionLoan{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    animation: helloLoan 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+.containerOptionLoan h5{
+    background-color: #3E2C41;
+    padding: .5rem;
+    border-radius: .5rem;
+    color: #98e1ff;
+}
+.containerCreateLoan .btn,.btnLoan{
+    width: 10rem;
+    background: radial-gradient(circle, rgba(25,3,76,0.8) 50%, rgba(152,225,255,1) 100%);
+    transition: background-color .5s;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+.containerAmountPayment{
+    width: 32rem;
+}
+.containerTypeLoan p,.containerAmountPayment p{
+    margin: 0;
+    background: linear-gradient(90deg, rgba(152,225,255,1) 15%, rgba(25,3,76,1) 95%);
+    border-radius: 1rem;
+}
+.containerTypeLoan p span,.containerAmountPayment p span{
+    color: #98e1ff;
+}
+.liConfirmLoan{
+    background: linear-gradient(90deg, rgba(152,225,255,0.9) 0%, rgba(25,3,76,0.9248074229691877) 61%);
+    width: 20rem;
+}
+.liConfirmLoan span, .liConfirmLoan h5{
+    color: #98e1ff;
+}
+.liConfirmLoan h5{
+    width: 10rem;
+}
+.iconBackLoan{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    transition: transform .5s;
+}
+.iconBackLoan::before{
+    font-size: 25px;
+    color: #fff;
+    cursor: pointer;
+}
+.iconBackLoan:hover{
+    transform: scale(1.3);
+}
+.headerModalLoan{
+    background: linear-gradient(90deg, rgba(152,225,255,0.9) 0%, rgba(25,3,76,0.9248074229691877) 61%);
+}
+.messageLoan{
+    background-color: #8FCEBD;
+    border-radius: 1rem;
+    color: #3E2C41;
+}
+.exitLoan{
+    animation: exitLoan 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+.backLoan{
+    animation: backLoan 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes helloLoan {
+    0%{   
+        opacity: 0;
+    }
+    80%{
+        opacity: .8;
+    }
+    100%{
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+@keyframes exitLoan {
+    0%{
+        transform: translateY(0);
+        opacity: .8;
+    }
+    100%{
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+@keyframes backLoan {
+    0%{
+        transform: scale(1);
+        opacity: .8;
+    }
+    80%{
+        opacity: .1;
+    }
+    100%{
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+
+/****V-CLOAK*******/
+[v-cloak] {
+    display: none;
+  }
+
+/***DARK MODE****/
+.mainDarkMode{
+    background-image: url(../img/backgroundMain.jpg);
+    background-size: cover;
+    background-position-y: center;
+    filter: grayscale(0.95);
+    padding: 0 !important;
+}
+.darkClass{
+    background-color: #1c1e21 !important;
+      
+}
+.darkText{
+    color: #fff !important;
+}
+.darkIcon::before{
+    color:#fff;
+}
+.darkContainer{
+    background-color: #323232 !important;
+}
+.imgDarkMode{
+    filter: grayscale(0.95);
+}
+
+
+/*************MEDIA***************/
+@media screen and (max-width: 769px){
+    /*HEADER*/
+    #offcanvasExample{
+        padding-top: 20vh;
+    }
+    header.row{
+        height: 20vh;
+        flex-direction: column;
+        justify-content: space-evenly !important;
+    }
+    h1>img{
+        width: 3rem;
+        height: 3rem;
+    }
+    .rounded-circle{
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .btn-nav{
+        width: 3rem !important;
+        height: 2rem;
+        top: calc((20vh - 3.5rem));
+    }
+   
+    /*MAIN*/
+    main{
+        padding: 0;
+    }
+    .containerName{
+        flex-direction: column;
+        justify-content: center !important;
+        align-items: center;
+    }
+    #accordionFlushExample{
+        width: 100%;
+    }
+    .accordion-button{
+        width: 60%;
+    }
+    .accordion-body{
+        padding: 0 !important;
+    }
+    .containerDebit,.containerCredit{
+        width: 100% !important;
+    }
+    .mainCreateCard{
+        flex-direction: column;
+        padding: 1rem 0 !important;
+    }
+    .mainCreateTransaction{
+        flex-direction: column;
+    }
+    .mainCreateTransaction .containerConfirm{
+        margin: 1rem 0;
+    }
+
+
+
+}
+
+@media screen and (max-width: 426px){
+
+    header.row{
+        align-items: flex-end !important;
+
+    }
+    h1{
+        font-size: 22px;
+    }
+    /*MAIN*/
+
+    h2.welcome, .nameClient{
+        font-size: 25px;
+    }
+    .totalBalance{
+        font-size: 22px;
+    }
+    .card-body, .list-group-item, .textDate{
+        padding-right: 0;
+        font-size: 15px;
+    }
+
+    .table{
+        width: 100%;
+        font-size: 12px;
+    }
+    .divFooter{
+        font-size: 15px;
+        margin: .5rem 0;
+    }
+    .divFooter h3{
+        font-size: 18px;
+    }
+    #offcanvasExample{
+        width: 70%;
+    }
+    /***ACORDION****/
+    .list-group-item code{
+        font-size: 14px !important;
+    }
+    .list-group-horizontal .list-group-item{
+        font-size: 14px;
+        padding: .3rem;
+    }
+    .formCard{
+        padding: 0;
+    }   
+    .formCard .labelCard,.formCard h5{
+        font-size: 14px;
+        width: auto;
+    }
+    .containerRadioColor div{
+        margin: 0 !important;
+    }
+    main .cardAccount{
+        width: 20rem !important;
+    }
+      
+    .containerModalTransaction{
+        width: 20rem;
+    }
+    .modal-body{
+        padding: 1rem 0;
+    }
+    .containerCreateCard{
+        width: 20rem;
+        border-radius: 0;
+        
+    }
+    .containerColorCard,.containerTypeCard{
+        justify-content: center !important;
+        align-items: center;
+        padding: 0;  
+    }
+    .containerColorCard button,.containerTypeCard button{
+        border: 1px solid #000;
+    }
+    .containerCreateLoan,.containerTransactionCreate{
+        height: 35rem !important;
+        width: 20rem;
+        border-radius: 0;
+    }
+    .containerAmountPayment{
+        flex-direction: column;
+    }
+    .liConfirmLoan{
+        padding: 0 !important;
+        padding-right: .5rem !important;       
+    }
+    .liConfirmLoan .badge{
+        font-size: 16px;
+    }
+
+    
+}

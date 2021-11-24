@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homebanking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./estilos.css">
+</head>
+<body>
+    <header>
+        <h1 class="text-center">Mindhub Brothers Bank</h1>
+    </header>
+    <main class="container-fluid" id="app">
+        <section class="row">
+            <div class="col-lg-8 contenedor-formTabla">
+                <form class="d-flex">
+                    <h2 class="text-center">Client Manager</h2>
+                    <div class="row">   
+                        <label for="nombre" class="col-lg-2">Name</label>
+                        <input v-model="form.nombre" type="text" class="col-lg-10" id="nombre" placeholder="Name" required>
+                    </div>
+                    <div class="row">   
+                        <label for="apellido" class="col-lg-2">Last name</label>
+                        <input v-model="form.apellido" type="text" class="col-lg-10" id="apellido" placeholder="Last name" required>
+                    </div>
+                    <div class="row">   
+                        <label for="mail" class="col-lg-2">E-mail</label>
+                        <input  required v-model="form.email" type="text" class="col-lg-10" id="mail" placeholder="Email" >
+                    </div>
+                    <button @click="addClient" class="btn btn-dark">Add client</button>
+                </form>
+                <div class="contenedor-tabla">
+                    <h2 class="text-center">Client list</h2>
+                    <table class="table text-center">
+                        <thead>
+                            <tr class="table-danger">
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Email</th>  
+                            </tr>    
+                        </thead>
+                        <tbody v-for="cliente in clientes">
+                            <tr class="table-dark">
+                                <td>{{cliente.firstName}}</td>
+                                <td>{{cliente.lastName}}</td>
+                                <td>{{cliente.eMail}}</td> 
+                            </tr>
+                                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-4 data">
+                <h2 class="text-center">Client REST response</h2>
+                <div><pre>{{data}}</pre></div>
+            </div>
+            
+        </section>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./manager.js"></script>
+</body>
+</html>

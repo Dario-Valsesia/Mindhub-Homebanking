@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif !important;
+    user-select: none;
+}
+main{
+    width: 100%;
+    height:100vh;
+    background-color: #3E2C41;
+    padding: 3rem;
+}
+.containerImgForm{
+    width: 100%;
+    height: 100%;  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border-radius: 1rem;
+    box-shadow: -20px 25px 15px -11px rgba(0,0,0,0.75);
+    background-image: url(../img/bbanks.jpg);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;
+}
+
+/******IMG*********/
+.containerImg{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 5rem;
+    
+}
+.containerImg .imgLogin{
+    width: 60%;
+}
+
+/*****FORM*******/
+
+.containerForm{
+    width: 50%;
+    height: 95%;
+    background-color: #756a9c60; 
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+    box-shadow: 0px 0px 29px 1px rgba(0,0,0,0.75);
+    border-radius: 1rem;
+    animation: login 1.5s;    
+}
+@keyframes login {
+    0%{
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.title{
+    text-align: center;
+    font-size: 50px;
+    color: #fff;
+    margin: 1rem;
+}
+.paragraph{
+    font-size: 20px;
+    color: #fff;
+}
+.form{
+    width: 80%;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.inputLogin{
+    width: 22rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+.inputLogin input{
+    border: none;
+    width: 90%;
+    padding: .5rem;
+    border-radius: 1rem;
+    font-size: 20px;
+    background-color: #fff0;
+}
+.inputLogin input::placeholder{
+    color: #5C527F;
+    font-size: 20px;
+}
+.inputLogin input:focus-visible{
+    outline: none;
+}
+.inputLogin i {
+    width: 2rem;
+    height: auto;
+    margin-right: .4rem;
+    cursor: pointer;
+}
+.inputLogin i::before{
+    font-size: 30px;
+    padding: .3rem .2rem;
+}
+.btnLogin{
+    width: 8rem;
+    height: 2.5rem;
+    color: #fff;
+    background-color: #261C2C;
+    border-radius: 1rem;
+    margin: .5rem;
+}
+.btnCreateAccount{
+    background-color: rgba(0, 0, 0, 0);
+    padding: .5rem;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+}
+.bi-arrow-right-circle{
+    margin-left: .5rem;
+}
+/****ERROR*****/
+.pErrorLogin{
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: .5rem;
+}
+
+
+/******CREATE ACCOUNT*****/
+.modal-dialog{
+    margin-top: 25vh;
+    transition: 1.5s !important;
+}
+.modal-header{
+    background-color: #3E2C41;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.inputCreate{
+    border: none;
+    margin: 0 !important;
+    width: 90%;  
+    padding-left: .2rem;
+}
+.inputCreate::placeholder{
+    color: #333;
+}
+form .inputCreate:focus-visible{
+    border: none !important;
+    background-color: inherit !important;
+    outline: none !important;
+}
+.containerInputCreate{
+    border-bottom: 1px solid #5C527F;
+    display: flex;
+    justify-content: space-between;
+}
+.containerInputCreate>i::before{
+    font-size: 30px;
+    color: #333;
+}
+.btnRegister{
+    background-color: #3E2C41;
+    color: #fff;
+}
+@media screen and (max-width: 769px){
+
+    .containerImg{
+        width: 100%;
+        height: 30%;
+        padding: 0;
+    }
+    .containerForm{
+        width: 100%;
+        height: 70%;
+        border-radius: 0px;
+    }
+    .containerImg .imgLogin{
+        width: 11rem;
+    }
+    .form{
+        height: auto;
+    }
+
+}
+@media screen and (max-width: 426px){
+    main{
+        padding: 1rem;
+    }
+    .title{
+        font-size: 34px;
+    }
+    .paragraph{
+        font-size: 14px;
+    }
+    .inputLogin{
+        width: 100%;
+    }
+    .containerImg{
+        display: none;
+    }
+    .containerForm{
+        height: 80%;
+        justify-content: space-between;
+    }
+    .btnCreateAccount{
+        font-size: 15px;
+    }
+}

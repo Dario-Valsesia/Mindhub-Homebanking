@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body >
+  <div id="app">
+
+    
+      <!-- INICIO OFFCANVAS NAV -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" :class="{darkClass : darkMode}">
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-0 pb-5" >
+          <button class="btn btn-nav btn-nav-close col-2 col-lg-2 d-flex justify-content-center align-items-center p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" :class="{darkContainer : darkMode}"><i class="bi bi-x-lg" :class="{darkIcon : darkMode}"></i></button>
+          <nav class="d-flex flex-column nav">
+            <a href="./accounts.html"><i class="bi bi-person-square mx-3"></i>My accounts</a>
+            <a  href="./cards.html"><i class="bi bi-credit-card mx-3"></i>Cards</a>
+            <a class="active" href="#"><i class="bi bi-arrow-left-right mx-3"></i>Transfers</a>
+            <a href="./loan-application.html"><i class="bi bi-wallet2 mx-3"></i>Loans</a>
+          </nav>
+          <div class="form-check form-switch d-flex  flex-column justify-content-between align-items-end p-0">
+            
+            <label class="form-check-label d-flex justify-content-center align-items-center" for="flexSwitchCheckChecked">
+              <i v-if="!darkMode" class="bi bi-moon-stars mx-3">Dark mode</i>
+              <i v-else class="bi bi-sun mx-3">Day mode</i>
+            </label>
+            <input  type="checkbox" @click="setDarkMode" class="form-check-input d-none" id="flexSwitchCheckChecked" >
+          </div>
+        </div>
+      </div>
+      <!-- FIN OFFCANVAS NAV -->
+
+    <header class="row d-flex justify-content-center align-items-center" :class="{darkContainer : darkMode}">
+      <button class="btn btn-nav col-2 col-lg-2 d-flex justify-content-center align-items-center p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" :class="{darkClass : darkMode}"><i class="bi bi-list" :class="{darkIcon : darkMode}"></i></button>
+      <h1 class="col-12 col-lg-7 m-0 p-0 text-center"><img src="./img/logoBank.png" alt=""> Mindhub Brothers Bank</h1>
+      <div class="dropdown col-8 col-lg-3 d-flex align-items-center justify-content-evenly p-0">
+        <a href="#" class="text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="./img/imgPerfil.png" alt="" class="rounded-circle">
+        </a>  
+        <ul class="dropdown-menu text-small shadow" :class="{darkContainer : darkMode, bgDropdown : !darkMode}" aria-labelledby="dropdownUser1">
+          <li><a @click="singOut()" class="dropdown-item" href="./index.html">Sign out</a></li>
+        </ul>
+      </div>
+    </header>
+
+        <!-- MAIN -->
+    <main :class="{mainDarkMode : darkMode, bgMain : !darkMode}" class="d-flex justify-content-evenly align-items-center p-0 mainCreateTransaction">
+      <div class="containerTransactionCreate d-flex align-items-center">
+        <div v-if="originAccount" class="d-flex flex-column align-items-center containerTransactionOption">
+          <h5 class="text-center my-3">SELECT SOURCE ACCOUNT</h5>
+          <div v-for="account in accounts" class="containerBtnBalance">
+            <button  @click="destination1" :value="account.number" class="my-2 btn btn-primary">{{account.number}}</button>
+            <p>${{account.balance}}</p>
+          </div>
+        </div>
+        <div v-if="destination" class="d-flex flex-column align-items-center containerTransactionOption">
+          <div class="backIcon">
+            <i @click="backOrigin" class="bi bi-arrow-left-circle-fill"></i>
+            <h5 class="text-center my-3">SELECT DESTINATION</h5>
+          </div>
+          <button @click="ownAccount" class="my-2 btn btn-primary">Own account</button>
+          <button @click="third" class="my-2 btn btn-primary">Other</button>
+        </div>
+        <div v-if="yourAccount" class="d-flex flex-column align-items-center containerTransactionOption">
+          <div class="backIcon">
+            <i  @click="backDestination" class="bi bi-arrow-left-circle-fill"></i>
+            <h5 class="text-center my-3">SELECT YOUR ACCOUNT</h5>
+          </div>
+          <p class="mt-5 text-white">DESTINATION ACCOUNT</p>
+          <div v-for="account in accountFilter" class="containerBtnBalance">
+            <button @click="amount" :value="account.number" class="my-2 btn btn-primary">{{account.number}}</button>
+            <p>${{account.balance}}</p>
+          </div>
+        </div>
+        <div v-if="numberAccount" class="d-flex flex-column align-items-center containerTransactionOption">
+          <div class="backIcon">
+            <i @click="backDestination" class="bi bi-arrow-left-circle-fill"></i>
+            <h5 class="text-center my-3">ENTER THE NUMBER</h5>
+          </div>
+          <input v-model="accountDestiny" type="text" placeholder="e.g. VIN-12345678">
+          <button @click="amount" class="my-2 btn btn-primary">Next</button>
+        </div>
+        <div v-if="yourAmount" class="d-flex flex-column align-items-center containerTransactionOption">
+          <div class="backIcon">
+            <i  @click="backNumber" class="bi bi-arrow-left-circle-fill"></i>
+            <h5 class="text-center my-3">ENTER YOUR AMOUNT</h5>
+          </div>
+          <input v-model="inputAmount" type="number" placeholder="e.g. 999">
+          <button @click="descri" class="my-2 btn btn-primary">Next</button>
+        </div>
+        <div v-if="description" class="d-flex flex-column align-items-center containerTransactionOption">
+          <div class="backIcon">
+            <i  @click="backAmount" class="bi bi-arrow-left-circle-fill"></i>
+            <h5 class="text-center my-3">ENTER DESCRIPTION</h5>
+          </div>
+          <input v-model="inputDescription" type="text" placeholder="e.g. Salary">
+          <button @click="confirmBtn" class="my-2 btn btn-primary"><a href="#acceptTransaction" class="text-decoration-none text-white"> Transfer</a></button>
+        </div>       
+      </div>
+      <div v-if="confirm" class="d-flex flex-column justify-content-around align-items-center containerConfirm" id="acceptTransaction">
+        <ul class="list-group list-group-flush">
+          <li v-cloak class="list-group-item d-flex justify-content-between"><p>Account Origin</p><p></p>{{accountSelect}}</li>
+          <li v-cloak class="list-group-item d-flex justify-content-between"><p>Account Destiny</p><p>{{accountDestiny}}</p></li>
+          <li v-cloak class="list-group-item d-flex justify-content-between"><p>Amount</p><p>${{inputAmount}}</p></li>
+          <li v-cloak class="list-group-item d-flex justify-content-between"><p>Description</p><p>{{inputDescription}}</p></li>
+          <li v-if="messageError!=''" class="list-group-item text-black messageEr text-center bi bi-x-circle">{{messageError}}</li>
+        </ul>
+        <button @click="createTransaction" class="btn btn-primary" type="button"><a href="#" class="text-decoration-none text-black">Accept</a></button>
+        <button @click="cancel" class="btn btn-primary">Cancel</button>
+      </div>
+      
+    <div v-cloak v-if="successful" class="containerBlackModal" >
+      <div class="containerModalTransaction" id="modalPdf">
+        <div class="modal-header">
+          <h4><i class="bi bi-patch-check me-2"></i>Transaction successful</h4>
+        </div>
+        <div class="modal-body text-center">
+          <h5>Do you want to download the voucher?</h5>
+        </div>
+        <div class="modal-footer">
+          <button @click="closeModal" class="btn btn-primary btnPdf"><i class="bi bi-x-circle me-2"></i>Cancel</button>
+          <button @click="downloadPdf" class="btn btn-primary btnPdf"><i class="bi bi-file-earmark-arrow-down me-2"></i>Download</button>
+        </div>
+      </div>
+    </div>  
+        
+    </main>
+
+    <footer class="row" :class="{darkContainer : darkMode}">
+      <div class="col-md-6 col-lg-3 text-center divFooter">
+          <h3>LOCATION</h3>
+          <p>4900 Southern Ave, South Gate, CA 90280, EE. UU.</p>
+      </div>
+      <div class="col-md-6 col-lg-3 text-center divFooter">
+          <h3>AROUND THE WEB</h3>
+          <div>
+          <a href="https://www.instagram.com/?hl=es" target="_blank"><i class="bi bi-instagram btn"></i></a>
+          <a href="https://twitter.com/" target="_blank"><i class="bi bi-twitter btn"></i></a>
+          <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook btn"></i></a>
+          </div>
+      </div>
+      <div class="col-md-6 col-lg-3 text-center divFooter">
+          <h3>ABOUT</h3>
+          <p>Mindhub Brothers provides the full range of personal and commercial banking services.</p>
+      </div>
+    </footer>
+
+     
+  </div> <!-- DIV APP VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./js/transfer.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login MBB</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./styles/styleLogin.css">
+</head>
+<body>
+    <main >
+        <div class="containerImgForm" id="app">
+            <div class="containerImg">
+                <img class="imgLogin" src="./img/Login.png" alt="">
+            </div>
+            <div class="containerForm">
+                <h1 class="title">Mindhub Brothers Bank</h1>
+                <p class="paragraph">Welcome to our site, log in to access your data</p>
+                <form v-on:submit.prevent="singIn" class="form">
+                    <div class="inputLogin">
+                        <input v-model="inputEmail"  type="text" placeholder="Username" name="email">
+                    </div>
+                    <div class="inputLogin">
+                        <input v-model="inputPassword" :type=" password ? 'text' : 'password'" placeholder="Password" name="password"> 
+                        <i v-if="password" @click="seePassword()" class="bi bi-eye-slash-fill"></i>
+                        <i v-else @click="seePassword()" class="bi bi-eye-fill"></i>
+                    </div>
+                    <p v-show="errorLogin" class="text-danger pErrorLogin">The username or password entered is incorrect</p>
+                    <button  class="btnLogin">LOGIN</button>                
+                </form>
+                <button @click="empty()" class="btnCreateAccount" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Create your account<i class="bi bi-arrow-right-circle"></i></button> 
+            </div>
+        
+            <!-- INICIO MODAL -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                    <h5 class="modal-title" id="exampleModalLabel">CREATE NEW ACCOUNT</h5>
+                    </div>
+                    <div class="modal-body">
+                    <form class="d-flex flex-column">
+                        <div class="containerInputCreate m-2">
+                            <input v-model="inputFirstName" class="inputCreate" type="text" placeholder="First Name">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <div class="containerInputCreate m-2">
+                            <input v-model="inputLastName" class="inputCreate" type="text" placeholder="Last Name">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <div class="containerInputCreate m-2">
+                            <input v-model="inputEmail" class="inputCreate" type="text" placeholder="Email Address">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div class="containerInputCreate m-2">
+                            <input v-model="inputPassword" class="inputCreate" type="text" placeholder="Password">                     
+                            <i class="bi bi-lock-fill"></i>
+                        </div>
+                        <div class="containerInputCreate m-2">
+                            <input v-model="confirmPassword" class="inputCreate" type="text" placeholder="Confirm Password">                     
+                            <i class="bi bi-arrow-clockwise"></i>
+                        </div>
+                        <p v-show="errorUserCreate" class="text-danger pErrorLogin">User already exists</p>
+                        <p v-show="errorPassCreate" class="text-danger pErrorLogin">Passwords do not match</p>
+                    </form>
+                    </div>
+                    <div class="modal-footer">
+                    <button @click="empty()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button @click="createAccount()" type="button" class="btn btnRegister">Register</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- FIN MODAL -->
+        </div> <!-- FIN DIV APP -->
+    </main>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body >
+  <div id="app">
+
+    
+      <!-- INICIO OFFCANVAS NAV -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" :class="{darkClass : darkMode}">
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-0 pb-5" >
+          <button class="btn btn-nav btn-nav-close col-2 col-lg-2 d-flex justify-content-center align-items-center p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" :class="{darkContainer : darkMode}"><i class="bi bi-x-lg" :class="{darkIcon : darkMode}"></i></button>
+          <nav class="d-flex flex-column nav">
+            <a href="./accounts.html"><i class="bi bi-person-square mx-3"></i>My accounts</a>
+            <a href="./cards.html"><i class="bi bi-credit-card mx-3"></i>Cards</a>
+            <a href="./transfers.html"><i class="bi bi-arrow-left-right mx-3"></i>Transfers</a>
+            <a href="#"class="active"><i class="bi bi-wallet2 mx-3"></i>Loans</a>
+          </nav>
+          <div class="form-check form-switch d-flex  flex-column justify-content-between align-items-end p-0">
+            
+            <label class="form-check-label d-flex justify-content-center align-items-center" for="flexSwitchCheckChecked">
+              <i v-if="!darkMode" class="bi bi-moon-stars mx-3">Dark mode</i>
+              <i v-else class="bi bi-sun mx-3">Day mode</i>
+            </label>
+            <input  type="checkbox" @click="setDarkMode" class="form-check-input d-none" id="flexSwitchCheckChecked" >
+          </div>
+        </div>
+      </div>
+      <!-- FIN OFFCANVAS NAV -->
+
+    <header class="row d-flex justify-content-center align-items-center" :class="{darkContainer : darkMode}">
+      <button class="btn btn-nav col-2 col-lg-2 d-flex justify-content-center align-items-center p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" :class="{darkClass : darkMode}"><i class="bi bi-list" :class="{darkIcon : darkMode}"></i></button>
+      <h1 class="col-12 col-lg-7 m-0 p-0 text-center"><img src="./img/logoBank.png" alt=""> Mindhub Brothers Bank</h1>
+      <div class="dropdown col-8 col-lg-3 d-flex align-items-center justify-content-evenly p-0">
+        <a href="#" class="text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="./img/imgPerfil.png" alt="" class="rounded-circle">
+        </a>  
+        <ul class="dropdown-menu text-small shadow" :class="{darkContainer : darkMode, bgDropdown : !darkMode}" aria-labelledby="dropdownUser1">
+          <li><a @click="singOut()" class="dropdown-item" href="./index.html">Sign out</a></li>
+        </ul>
+      </div>
+    </header>
+
+        <!-- MAIN -->
+    <main :class="{darkClass : darkMode, bgMain : !darkMode}" class="d-flex flex-column justify-content-center align-items-center mainLoan">
+        <div class="containerCreateLoan d-flex justify-content-center align-items-center">
+          <!-- SELECT ACCOUNT -->
+            <div v-if="viewAccount" class="containerOptionLoan d-flex flex-column align-items-center justify-content-center">
+                <h5>SELECT YOUR ACCOUNT</h5>
+                <div v-for="account in accounts" class="d-flex justify-content-center align-items-center containerAccountLoan">
+                  <button @click="nextAccount" :value="account.number" class="btn btn-primary my-1">{{account.number}}</button>
+                  <p>${{account.balance}}</p>
+                </div>
+            </div>
+          <!-- SELECT TYPE -->
+            <div v-if="viewLoan" class="containerOptionLoan d-flex flex-column align-items-center justify-content-center">
+                <i @click="backLoan" class="bi bi-arrow-left-circle-fill iconBackLoan"></i>
+                <h5>SELECT TYPE</h5>
+                <div v-for="loan in loans" class="d-flex flex-column justify-content-center align-items-center containerTypeLoan my-2">
+                  <p class="p-2">Max Amount: <span>${{loan.maxAmount}}</span></p>
+                  <button @click="nextLoan" :value="loan.name" class="btn btn-primary my-1">{{loan.name}}</button>
+                </div>
+            </div>
+          <!-- SELECT AMOUNT -->  
+            <div v-if="viewAmount" class="containerOptionLoan d-flex flex-column align-items-center justify-content-center">  
+              <i @click="backAmount" class="bi bi-arrow-left-circle-fill iconBackLoan"></i>
+              <h5>SELECT AMOUNT</h5>
+              <input v-model="selectAmount" type="number" class="p-2">
+              <button @click="nextAmount" class="btn btn-primary my-1">Next</button>
+            </div>
+          <!-- SELECT PAYMETS -->  
+            <div v-if="viewPaymets" class="containerOptionLoan d-flex flex-column align-items-center justify-content-center">
+                <i @click="backPayment" class="bi bi-arrow-left-circle-fill iconBackLoan"></i>
+                <h5>SELECT PAYMENTS</h5>
+                <div v-for="payment in option" class="d-flex justify-content-between align-items-center containerAmountPayment my-1">
+                  <p class="p-2 me-3">Amount of each payment: <span>${{((selectAmount*1.2) / payment).toFixed(1)}}</span></p>
+                  <button @click="nextPayment" :value="payment" class="btn btn-primary my-1">{{payment}}</button>
+                </div>
+            </div>
+          <!-- CONFIRM -->  
+            <div v-if="viewConfirm" class="containerOptionLoan d-flex flex-column align-items-center justify-content-center">
+              <i @click="backConfirm" class="bi bi-arrow-left-circle-fill iconBackLoan"></i>
+              <ul class="list-group">
+                <li class="list-group-item d-flex align-items-start liConfirmLoan">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">
+                      <h5 class="mb-3 text-center">{{selectLoan}}</h5>
+                      <p>ACCOUNT <span class="ms-1">{{selectAccount}}</span></p>
+                      <p>AMOUNT<span class="ms-3">${{selectAmount}}</span></p>
+                    </div>                  
+                  </div>
+                  <span class="badge bg-danger rounded-pill">{{selectPayment}}</span>
+                </li>                                    
+              </ul>            
+              <button @click="nextConfirm" class="btn btn-primary my-1">Accept</button>
+            </div>
+        </div>
+
+        <!-- MODAL -->
+        <div v-cloak v-if="viewModal" class="containerBlackModal" >
+          <div class="containerModalTransaction" id="modalPdf">
+            <div class="modal-header headerModalLoan">
+              <h4><i class="bi bi-eye me-2"></i>Are you sure?</h4>
+            </div>
+            <div class="modal-body text-center">
+              <h5>Remember that 20% of the amount is added</h5>
+              <p>Total amount ${{selectAmount*1.2}}</p>
+              <p v-if="requestMessage!=''" class="messageLoan my-2 p-2">{{requestMessage}}</p>
+              <p v-if="errorMessage!=''" class="messageEr p-2 my-2">{{errorMessage}}</p>
+            </div>
+            <div class="modal-footer">
+              <button @click="closeModal" class="btn btn-primary btnLoan"><i class="bi bi-x-circle me-2"></i>Cancel</button>
+              <button @click="createLoan" class="btn btn-primary btnLoan"><i class="bi bi-check-circle me-2"></i>Accept</button>
+            </div>
+          </div>
+        </div>  
+            
+    </main>
+
+    <footer class="row" :class="{darkContainer : darkMode}">
+      <div class="col-md-6 col-lg-3 text-center divFooter">
+          <h3>LOCATION</h3>
+          <p>4900 Southern Ave, South Gate, CA 90280, EE. UU.</p>
+      </div>
+      <div class="col-md-6 col-lg-3 text-center divFooter">
+          <h3>AROUND THE WEB</h3>
+          <div>
+          <a href="https://www.instagram.com/?hl=es" target="_blank"><i class="bi bi-instagram btn"></i></a>
+          <a href="https://twitter.com/" target="_blank"><i class="bi bi-twitter btn"></i></a>
+          <a href="https://www.facebook.com/" target="_blank"><i class="bi bi-facebook btn"></i></a>
+          </div>
+      </div>
+      <div class="col-md-6 col-lg-3 text-center divFooter">
+          <h3>ABOUT</h3>
+          <p>Mindhub Brothers provides the full range of personal and commercial banking services.</p>
+      </div>
+    </footer>
+
+     
+  </div> <!-- DIV APP VUE -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="./js/loan-application.js"></script>
+</body>
+</html>
