@@ -6,11 +6,13 @@ const app = Vue.createApp({
             cards:[],
             creditCards:[],
             debitCards:[],
+            viewCards:false,
         }
     },
     created(){
         this.loadData();
         this.darkMode = JSON.parse(localStorage.getItem('dark'));
+        
     },
     methods:{
         loadData(){
@@ -20,6 +22,7 @@ const app = Vue.createApp({
                     this.cards=res.data.cards
                     this.creditCards=res.data.cards.filter(card=>card.cardType == "CREDIT");
                     this.debitCards=res.data.cards.filter(card=>card.cardType == "DEBIT");
+                    this.viewCards=true;
                 })
                 .catch(error=>error);
         },

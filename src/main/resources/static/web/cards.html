@@ -49,8 +49,8 @@
     </header>
 
         <!-- MAIN -->
-    <main :class="{darkClass : darkMode, bgMain : !darkMode}" class="d-flex flex-column justify-content-center align-items-center">
-      <div class="d-flex containerDebitCredit pt-3">
+    <main :class="{darkClass : darkMode, bgMain : !darkMode}" class="d-flex flex-column justify-content-center align-items-center" v-cloak>
+      <div v-if="viewCards" class="d-flex containerDebitCredit pt-3">
         <div class="containerDebit d-flex flex-column align-items-center">
           <h3 :class="{darkContainer : darkMode}"><i class="bi bi-credit-card-2-back me-2"></i>Debit cards</h3>
           <div class="divDebit">
