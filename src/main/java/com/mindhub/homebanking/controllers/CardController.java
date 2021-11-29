@@ -8,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -45,6 +43,16 @@ public class CardController {
        }
        int cvv= CardUtils.getRandomNumber(100,999);
         cardRepository.save(new Card(CardUtils.getRandomNumber(1000,9999)+"-"+CardUtils.getRandomNumber(1000,9999)+"-"+CardUtils.getRandomNumber(1000,9999)+"-"+CardUtils.getRandomNumber(1000,9999),cvv,LocalDateTime.now(),LocalDateTime.now().plusYears(5),client,type,color)) ;
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    @DeleteMapping("/cards/delete")
+    public ResponseEntity<Object> deleteCard(@RequestParam String number, Authentication authentication){
+        Card card = cardRepository.findByNumber(number);
+        Client client = clientRepository.findByEmail(authentication.getName());
+        if(client.getCards().stream().filter(card1 -> card1.getNumber().equals(number)).collect(Collectors.toList()).size()==0){
+            return new ResponseEntity<>("The card does not belong to you",HttpStatus.FORBIDDEN);
+        }
+        cardRepository.delete(card);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

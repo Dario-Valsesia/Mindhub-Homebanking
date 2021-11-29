@@ -78,6 +78,7 @@
                     <p>{{card.cvv}}</p>
                   </div>
                   <p class="conditionsCard text-white ">This card is non-transferable and for the exclusive use of the holder whose signature appears above, in accordance with the terms and conditions that govern its use.</p>
+                  <button class="btn btn-danger btnDeleteCard" :value="card.number">Delete</button>
                 </div>
               </div>
             </template>
@@ -115,6 +116,7 @@
                     <p>{{card.cvv}}</p>
                   </div>
                   <p class="conditionsCard text-white ">This card is non-transferable and for the exclusive use of the holder whose signature appears above, in accordance with the terms and conditions that govern its use.</p>
+                  <button class="btn btn-danger btnDeleteCard" :value="card.number">Delete</button>
                 </div>
               </div>
             </template>
@@ -131,6 +133,23 @@
         <button class="btn btn-primary btnCreateLoan my-2"><a href="./payment.html" class="text-decoration-none text-white">Pay with card</a></button>
       </div>
           
+    <!-- MODAL DELETE -->
+    <div v-cloak v-if="viewModal" class="containerBlackModal" >
+      <div class="containerModalTransaction" id="modalPdf">
+        <div class="modal-header headerModalLoan">
+          <h4><i class="bi bi-eye me-2"></i>Are you sure?</h4>
+        </div>
+        <div class="modal-body text-center">
+          <h5>This card is going to be canceled</h5>
+          <p v-if="requestMessage!=''" class="messageLoan my-2 p-2">{{requestMessage}}</p>
+          <p v-if="errorMessage!=''" class="messageEr p-2 my-2">{{errorMessage}}</p>
+        </div>
+        <div class="modal-footer">
+          <button @click="closeModal" class="btn btn-primary btnLoan"><i class="bi bi-x-circle me-2"></i>Cancel</button>
+          <button @click="deleteCard" class="btn btn-primary btnLoan"><i class="bi bi-check-circle me-2"></i>Accept</button>
+        </div>
+      </div>
+    </div>    
       
     </main>
 

@@ -7,6 +7,10 @@ const app = Vue.createApp({
             creditCards:[],
             debitCards:[],
             viewCards:false,
+            viewModal:false,
+            numberCard:'',
+            errorMessage:'',
+            requestMessage:'',
         }
     },
     created(){
@@ -32,11 +36,27 @@ const app = Vue.createApp({
             document.querySelector('.btn-nav-close').click();      
         },
         rotateCard(e){
+              console.log(e.target.type=="submit");
+              if(e.target.type=="submit"){
+                this.numberCard=e.target.value;
+                this.viewModal=true;
+              }
               e.target.closest('.card').classList.toggle('toTurnJS');
         },
         singOut(){
             axios.post('/api/logout').then(response => console.log(response))
-        }
+        },
+
+        deleteCard(){
+            axios.delete(`/api/cards/delete?number=${this.numberCard}`).then(res=>{
+                this.requestMessage="Deleted successfully";
+                setTimeout(()=>location.reload(),1200)             
+            }).catch(e=>this.errorMessage=e.response.data)
+        },
+        closeModal(){   
+            this.viewModal=false;
+            location.reload();
+        },
     }
 
 

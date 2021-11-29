@@ -32,8 +32,13 @@ public class AccountController {
         return repositoryAccount.findAll().stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
     }
     @GetMapping("/accounts/{id}")
-    public AccountDTO getAccount(@PathVariable Long id, Authentication authentication){
-        return repositoryAccount.findById(id).map(account -> new AccountDTO(account)).orElse(null);
+    public  AccountDTO getAccount(@PathVariable Long id, Authentication authentication){
+        Account account = repositoryAccount.findById(id).orElse(null);
+        Client client = repositoryClient.findByEmail(authentication.getName());
+        if(client.getAccounts().contains(account)){
+            return repositoryAccount.findById(id).map(account1 -> new AccountDTO(account1)).orElse(null);
+        }
+        return new AccountDTO();
     }
     public static int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);

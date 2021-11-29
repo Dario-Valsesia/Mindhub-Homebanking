@@ -490,6 +490,14 @@ footer.row{
     padding-right: .5rem;
     justify-content: flex-end;
 }
+.btnDeleteCard{
+    height: 1.5rem;
+    margin: .5rem 1rem;
+    margin-left: 12rem;
+    padding: 0 .5rem!important;
+
+    vertical-align: middle;
+}
 /****ANIMATION CARD DEBIT***/
 .divDebit{
     animation-name: debit;
