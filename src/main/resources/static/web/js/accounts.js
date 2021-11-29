@@ -6,6 +6,10 @@ const app = Vue.createApp({
             totalBalance: 0,
             darkMode:false,
             loans:[],
+            numberAccount:'',
+            viewModal:false,
+            errorMessage:'',
+            requestMessage:'',
         }
     },
     created(){
@@ -49,7 +53,21 @@ const app = Vue.createApp({
             axios.post('/api/clients/current/accounts',{headers:{'content-type':'application/x-www-form-urlencoded'}})
                 .then(location.reload())
                 .catch(e=>console.log(e))
-        }
+        },
+        confirm(e){
+            this.numberAccount=e.target.value;
+            this.viewModal=true;
+        },
+        deleteAccount(e){
+            axios.delete(`/api/accounts/delete?number=${this.numberAccount}`).then(res=>{
+                this.requestMessage="Account deleted";
+                setTimeout(()=>location.reload(),1200);
+            }).catch(e=>this.errorMessage=e.response.data);
+        },
+        closeModal(){   
+            this.viewModal=false;
+            location.reload();
+        },
     },
 });
 

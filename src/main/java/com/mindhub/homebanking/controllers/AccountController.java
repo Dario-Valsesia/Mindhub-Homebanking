@@ -25,6 +25,8 @@ public class AccountController {
     private AccountRepository repositoryAccount;
     @Autowired
     private ClientRepository repositoryClient;
+    @Autowired
+    private TransactionRepository transactionRepository;
     @GetMapping("/accounts")
     public List<AccountDTO> getAccounts(){
         return repositoryAccount.findAll().stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
@@ -51,6 +53,26 @@ public class AccountController {
             repositoryClient.findByEmail(authentication.getName()).addAccount(account);
             repositoryAccount.save(account);
             return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    @DeleteMapping("/accounts/delete")
+    public ResponseEntity<Object> deleteAccount(@RequestParam String number, Authentication authentication){
+        Client client = repositoryClient.findByEmail(authentication.getName());
+        Account account = repositoryAccount.findByNumber(number);
+        if (client.getAccounts().stream().filter(account1 -> account1.getNumber().equals(number)).collect(Collectors.toList()).size()==0){
+            return new ResponseEntity<>( "The account does not belong to you ",HttpStatus.FORBIDDEN);
+        }
+
+        if (account.getBalance()>0){
+            return new ResponseEntity<>("The account has available money",HttpStatus.FORBIDDEN);
+        }
+        Set<Transaction> transactions = account.getTransactions();
+        if (transactions.size()>0){
+            for(Transaction transaction : transactions){
+                transactionRepository.delete(transaction);
+            }
+        }
+        repositoryAccount.delete(account);
+        return new ResponseEntity<>("Delete",HttpStatus.OK);
     }
 
 }

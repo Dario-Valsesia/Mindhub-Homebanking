@@ -182,6 +182,13 @@ h2.welcome{
 .btnCreateAccount:hover{
     background-color: #3E2C41;
 }
+.btnDelete{
+    height: 3rem;
+    margin-right: .5rem;
+    vertical-align: middle;
+    background-color: #ff98db !important;
+    color: #000;
+}
 /*****ACORDION ACCOUNTS******/
 #accordionFlushExample{
     width: 90%;
@@ -261,7 +268,12 @@ main .cardAccount{
     font-size: 20px;
     color: #fff;
     font-weight: 500;
-    padding: 1rem 3rem;
+    padding: .6rem 3rem;
+    border: 1px solid #21081e;
+    background-color: #5C527F;
+    border-radius: .5rem;
+    margin: .2rem 0;
+    margin-left: .5rem;
 }
 .btn-transactions:hover{
     color: #6E85B2;

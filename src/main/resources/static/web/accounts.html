@@ -67,8 +67,9 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item" :class="{darkContainer : darkMode}"><i class="bi bi-currency-dollar"></i>{{account.balance}}</li>
           </ul>
-          <div class="card-body text-center" :class="{darkClass : darkMode, containerTransaction : !darkMode}">
+          <div class="card-body d-flex justify-content-between align-items-center p-0" :class="{darkClass : darkMode, containerTransaction : !darkMode}">
             <a :href="getUrl(account.id)" class="card-link text-decoration-none btn-transactions" >Transaction</a>
+            <button @click="confirm" class="btn btn-danger btnDelete" :value="account.number">Delete</button>
           </div>
         </div>        
       </div> <!-- DIV CONTAINERCARDS  -->   
@@ -94,6 +95,25 @@
                 <h3 class="text-center text-black messageEr p-2">You do not have loans</h3>
               </template>
             </div> 
+          </div>
+        </div>
+      </div>
+      
+      
+      <!-- MODAL DELETE -->
+      <div v-cloak v-if="viewModal" class="containerBlackModal" >
+        <div class="containerModalTransaction" id="modalPdf">
+          <div class="modal-header headerModalLoan">
+            <h4><i class="bi bi-eye me-2"></i>Are you sure?</h4>
+          </div>
+          <div class="modal-body text-center">
+            <h5>Remember that the account does not have to have a balance</h5>
+            <p v-if="requestMessage!=''" class="messageLoan my-2 p-2">{{requestMessage}}</p>
+            <p v-if="errorMessage!=''" class="messageEr p-2 my-2">{{errorMessage}}</p>
+          </div>
+          <div class="modal-footer">
+            <button @click="closeModal" class="btn btn-primary btnLoan"><i class="bi bi-x-circle me-2"></i>Cancel</button>
+            <button @click="deleteAccount" class="btn btn-primary btnLoan"><i class="bi bi-check-circle me-2"></i>Accept</button>
           </div>
         </div>
       </div>  
