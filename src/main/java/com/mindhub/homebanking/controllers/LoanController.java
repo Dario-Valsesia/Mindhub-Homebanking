@@ -82,10 +82,26 @@ public class LoanController {
 
             return  new ResponseEntity<>("Create", HttpStatus.CREATED);
 
+    }
 
+    @PostMapping("/create/loans")
+    public ResponseEntity<Object> createLoan(@RequestParam String name, @RequestParam double amountMax,@RequestParam List<Integer> payments){
+        if(amountMax<=0){
+           return new ResponseEntity<>("The amount must be greater than 0", HttpStatus.FORBIDDEN);
+        }
+        if(amountMax>1000000){
+            return new ResponseEntity<>("Maximum amount 1,000,000", HttpStatus.FORBIDDEN);
+        }
+        if(name.isEmpty()){
+            return new ResponseEntity<>("The name is empty", HttpStatus.FORBIDDEN);
+        }
+        if(payments.isEmpty()){
+            return  new ResponseEntity<>("Indicate amount of installments", HttpStatus.FORBIDDEN);
+        }
+        Loan loan = new Loan(name,amountMax,payments);
+        loanRepository.save(loan);
 
-
-
+        return new ResponseEntity<>("Create", HttpStatus.CREATED);
     }
 
 }

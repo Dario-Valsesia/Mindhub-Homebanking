@@ -18,7 +18,6 @@ const app = Vue.createApp({
     methods:{
        singIn(){
         axios.post("/api/login", `email=${this.inputEmail}&password=${this.inputPassword}`,{headers:{'content-type':'application/x-www-form-urlencoded'}}).then(response => {
-            console.log(response);
             if(response.status==200){
                 window.location.href = "./accounts.html"
             }          

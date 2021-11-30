@@ -970,6 +970,51 @@ footer.row{
     filter: grayscale(0.95);
 }
 
+/************ADMIN************/
+.formAdmin{
+    height: 60vh;
+    width: 70%;
+}
+.containerPayments{
+    height: 10rem;
+    width: 50%;
+    padding: 0;
+    padding:.1rem .5rem;
+    background-color: #6E85B2 ;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+.formAdmin input{
+    padding: .3rem;
+    border-radius: .5rem;
+    background-color: #6E85B2;
+    width: 50%;
+}
+.formAdmin div{
+    width: 60%;
+}
+.formAdmin label{
+    width: 12rem;
+    background-color: #21081e;
+    margin-right: .5rem;
+    border-radius: .5rem;
+    padding: .4rem;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+}
+.bi-cursor-fill::before{
+    margin-right: .5rem;
+}
+.formAdmin button{
+    background-color: #21081e;
+    color: #fff;
+    transition: .5s;
+}
+.formAdmin button:hover{
+    transform: scale(1.3);
+    color: #fff;
+}
+
 
 /*************MEDIA***************/
 @media screen and (max-width: 769px){
@@ -1123,6 +1168,21 @@ footer.row{
     }
     .liConfirmLoan .badge{
         font-size: 16px;
+    }
+    .mainAdmin{
+        width: 100%;
+    }
+    .formAdmin{
+        width: 100%;
+        height: 70vh;
+        justify-content: space-between;
+    }
+    .formAdmin div{
+        width: 100%;
+        flex-direction: column;
+    }
+    .formAdmin input,.formAdmin select{
+        margin-top: .5rem;
     }
 
     
