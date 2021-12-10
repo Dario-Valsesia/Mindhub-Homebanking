@@ -39,10 +39,10 @@ public class HomebankingApplication {
 			repositoryClient.save(clienteDario);
 
 			//CREO LAS CUENTAS
-			Account  VIN001 =  new Account("14", LocalDateTime.now(),5000);
-			Account  VIN002= new Account("28", LocalDateTime.now().plusDays(1),7500);
-			Account cuentaDario1= new Account("VIN-"+ (int) ((Math.random() * (99999999 - 10000000)) + 10000000),LocalDateTime.now().plusDays(2), 4400);
-			Account cuentaDario2= new Account("VIN-"+ (int) ((Math.random() * (99999999 - 10000000)) + 10000000),LocalDateTime.now(),2000);
+			Account  VIN001 =  new Account("14", LocalDateTime.now(),10000);
+			Account  VIN002= new Account("28", LocalDateTime.now().plusDays(1),5000);
+			Account cuentaDario1= new Account("VIN-"+ (int) ((Math.random() * (99999999 - 10000000)) + 10000000),LocalDateTime.now().plusDays(2), 10000);
+			Account cuentaDario2= new Account("VIN-"+ (int) ((Math.random() * (99999999 - 10000000)) + 10000000),LocalDateTime.now(),11000);
 			clienteDario.addAccount(cuentaDario1);
 			clienteDario.addAccount(cuentaDario2);
 			clienteMelba.addAccount(VIN001);
@@ -117,7 +117,7 @@ public class HomebankingApplication {
 			Card cardMelbaGold = new Card("3325-6745-7876-4445",123,LocalDateTime.now(),LocalDateTime.now().plusYears(5), clienteMelba,CardType.DEBIT,CardColor.GOLD);
 			Card cardMelbaTitanium = new Card("0214-4645-5046-9090",456, LocalDateTime.now(), LocalDateTime.now().plusYears(5), clienteMelba, CardType.CREDIT,CardColor.TITANIUM);
 			//Card cardMelbaSilver = new Card("1414-9574-4768-2873",714, LocalDateTime.now(), LocalDateTime.now().plusYears(5), clienteMelba, CardType.CREDIT,CardColor.SILVER);
-			Card cardDarioSilver = new Card("4568-6235-4574-1414",414,LocalDateTime.now(), LocalDateTime.now().plusYears(4), clienteDario, CardType.CREDIT, CardColor.SILVER);
+			Card cardDarioSilver = new Card("0000-1111-2222-3333",414,LocalDateTime.now(), LocalDateTime.now().plusYears(4), clienteDario, CardType.CREDIT, CardColor.SILVER);
 			cardRepository.save(cardMelbaGold);
 			cardRepository.save(cardMelbaTitanium);
 			cardRepository.save(cardDarioSilver);

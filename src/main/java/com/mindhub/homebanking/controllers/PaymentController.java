@@ -12,15 +12,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -34,6 +33,44 @@ public class PaymentController {
     private AccountRepository accountRepository;
     @Autowired
     private TransactionRepository transactionRepository;
+
+    @Transactional
+    //@CrossOrigin)("/*")
+    @PostMapping("/pagar")
+    public ResponseEntity<Object> toPay(@RequestParam String numCard,@RequestParam Integer cvv,@RequestParam String name,@RequestParam String thruDate,@RequestParam Double total ){
+            if(numCard.isEmpty()||name.isEmpty()||thruDate.isEmpty()){
+                return new ResponseEntity<>("Data vacia", HttpStatus.FORBIDDEN);
+            }
+            Card card = cardRepository.findByNumber(numCard);
+            if (card==null){
+                return new ResponseEntity<>("La tarjeta no existe", HttpStatus.FORBIDDEN);
+            }
+            String nombre = card.getClientCard().getFirstName()+" "+card.getClientCard().getLastName();
+            if (!nombre.equals(name)){
+                return new ResponseEntity<>("Nombre del titular incorrecto", HttpStatus.FORBIDDEN);
+            }
+            if (card.getCvv()!=cvv){
+                return new ResponseEntity<>("El cvv es incorrecto", HttpStatus.FORBIDDEN);
+            }
+            String fechaTarjeta = card.getThruDate();
+            String fechaAComparar = fechaTarjeta.substring(0,7);
+            if (!fechaAComparar.equals(thruDate)){
+                return new ResponseEntity<>("La fecha de vencimiento es incorrecta", HttpStatus.FORBIDDEN);
+            }
+            Client cliente = card.getClientCard();
+            Account cuenta = cliente.getAccounts().iterator().next();
+            if(cuenta.getBalance()<total){
+                return new ResponseEntity<>("Saldo insuficiente", HttpStatus.FORBIDDEN);
+            }
+            Transaction transaccion = new Transaction(total,"To pay with card",LocalDateTime.now(),TransactionType.DEBIT);
+            transactionRepository.save(transaccion);
+
+            cuenta.addTransactions(transaccion);
+            cuenta.setBalance(cuenta.getBalance()-total);
+            accountRepository.save(cuenta);
+
+            return new ResponseEntity<>("Pago exitoso", HttpStatus.CREATED);
+    }
 
     @Transactional
     @PostMapping("/payments")

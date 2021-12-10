@@ -22,6 +22,7 @@ public class CardController {
     @Autowired
     private ClientRepository clientRepository;
 
+
     @PostMapping("/clients/current/cards")
     public ResponseEntity<Object> create(@RequestParam CardColor color, @RequestParam CardType type, Authentication authentication){
         if(color.toString().isEmpty()){
