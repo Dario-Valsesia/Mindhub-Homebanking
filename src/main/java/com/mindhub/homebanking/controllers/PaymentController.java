@@ -35,7 +35,7 @@ public class PaymentController {
     private TransactionRepository transactionRepository;
 
     @Transactional
-    //@CrossOrigin)("/*")
+    @CrossOrigin("*")
     @PostMapping("/pagar")
     public ResponseEntity<Object> toPay(@RequestParam String numCard,@RequestParam Integer cvv,@RequestParam String name,@RequestParam String thruDate,@RequestParam Double total ){
             if(numCard.isEmpty()||name.isEmpty()||thruDate.isEmpty()){

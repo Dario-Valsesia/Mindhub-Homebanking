@@ -51,6 +51,7 @@ public class WebAuthorization extends WebSecurityConfigurerAdapter {
         http.formLogin().failureHandler((req, res, exc) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED));
         //si el cierre de sesión es exitoso, simplemente envíe una respuesta exitosa
         http.logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler());
+        http.cors();
     }
 
     private void clearAuthenticationAttributes(HttpServletRequest req) {
