@@ -41,8 +41,8 @@ public class HomebankingApplication {
 			//CREO LAS CUENTAS
 			Account  VIN001 =  new Account("14", LocalDateTime.now(),10000);
 			Account  VIN002= new Account("28", LocalDateTime.now().plusDays(1),5000);
-			Account cuentaDario1= new Account("VIN-"+ (int) ((Math.random() * (99999999 - 10000000)) + 10000000),LocalDateTime.now().plusDays(2), 10000);
-			Account cuentaDario2= new Account("VIN-"+ (int) ((Math.random() * (99999999 - 10000000)) + 10000000),LocalDateTime.now(),11000);
+			Account cuentaDario1= new Account("VIN-"+ (int) ((Math.random() * (99999999 - 10000000)) + 10000000),LocalDateTime.now().plusDays(2), 25000);
+			Account cuentaDario2= new Account("VIN-"+ (int) ((Math.random() * (99999999 - 10000000)) + 10000000),LocalDateTime.now(),25000);
 			clienteDario.addAccount(cuentaDario1);
 			clienteDario.addAccount(cuentaDario2);
 			clienteMelba.addAccount(VIN001);
